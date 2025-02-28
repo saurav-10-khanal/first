@@ -1,19 +1,13 @@
+import React from 'react';
+import './App.css';
+import LoginPage from './loginpage'; // Ensure 'loginpage.jsx' exists in 'src'
 
-import './App.css'
-import CreateNewCourse from './loginpage'
-import UploadLecture from './loginpage'
-import CoursePreview from './loginpage'
-import AdminDashboard from './loginpage'
-import Demo from './loginpage'
-import React from 'Project1'
 function App() {
-
-
   return (
     <div>
-      <LoginPage/>
+      <LoginPage />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
