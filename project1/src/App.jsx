@@ -5,13 +5,14 @@ import DashBoard from './Dashboard';
 import PatientDashboardPage from './PDashboard';
 import Sidebar from './sidebar';
 import PatientProfile from './PProfile';
+import UploadReport from './UploadReport';
 
 
 function App() {
   return (
     
       <div>
-      <PatientProfile />
+      <UploadReport />
     </div>
     
     
