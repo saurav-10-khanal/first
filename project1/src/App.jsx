@@ -6,13 +6,15 @@ import PatientDashboardPage from './PDashboard';
 import Sidebar from './sidebar';
 import PatientProfile from './PProfile';
 import UploadReport from './UploadReport';
+import Schedule from './Schedule';
+import DoctorAppointments from './Schedule';
 
 
 function App() {
   return (
     
       <div>
-      <UploadReport />
+      <DoctorAppointments />
     </div>
     
     
