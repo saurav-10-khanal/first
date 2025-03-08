@@ -8,13 +8,14 @@ import PatientProfile from './PProfile';
 import UploadReport from './UploadReport';
 import Schedule from './Schedule';
 import DoctorAppointments from './Schedule';
+import PatientListView from './PListView';
 
 
 function App() {
   return (
     
       <div>
-      <DoctorAppointments />
+      <PatientListView />
     </div>
     
     
