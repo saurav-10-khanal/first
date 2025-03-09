@@ -9,13 +9,15 @@ import UploadReport from './UploadReport';
 import Schedule from './Schedule';
 import DoctorAppointments from './Schedule';
 import PatientListView from './PListView';
+import DoctorProfile from './DocProfile';
 
 
 function App() {
   return (
     
-      <div>
+    <div>
       <PatientListView />
+      <DoctorProfile/>
     </div>
     
     
