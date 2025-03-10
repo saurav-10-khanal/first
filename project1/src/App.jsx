@@ -10,6 +10,7 @@ import Schedule from './Schedule';
 import DoctorAppointments from './Schedule';
 import PatientListView from './PListView';
 import DoctorProfile from './DocProfile';
+import PatientHomePage from './PHomePage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <div>
       <PatientListView />
       <DoctorProfile/>
+      <PatientHomePage/>
     </div>
     
     
