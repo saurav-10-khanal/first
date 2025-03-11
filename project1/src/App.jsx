@@ -11,6 +11,7 @@ import DoctorAppointments from './Schedule';
 import PatientListView from './PListView';
 import DoctorProfile from './DocProfile';
 import PatientHomePage from './PHomePage';
+import AppointmentStatusChecklist from './AppointmentCheck';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <PatientListView />
       <DoctorProfile/>
       <PatientHomePage/>
+      <AppointmentStatusChecklist/>
     </div>
     
     
