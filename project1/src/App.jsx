@@ -12,6 +12,7 @@ import PatientListView from './PListView';
 import DoctorProfile from './DocProfile';
 import PatientHomePage from './PHomePage';
 import AppointmentStatusChecklist from './AppointmentCheck';
+import ChatConsultation from './ChatBox';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <DoctorProfile/>
       <PatientHomePage/>
       <AppointmentStatusChecklist/>
+      <ChatConsultation/>
     </div>
     
     
