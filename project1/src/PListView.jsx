@@ -70,20 +70,20 @@ const PatientListView = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
+    <div className="flex h-screen bg-white text-gray-900">
       <Sidebar />
       <div className="flex-1 overflow-auto p-6">
-        <h1 className="text-3xl font-bold mb-6">Patient List</h1>
+        <h1 className="text-3xl font-bold mb-6 text-green-700">Patient List</h1>
         <input
           type="text"
           placeholder="Search by name or disease..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 mb-4"
+          className="w-full p-2 rounded-lg bg-gray-100 border border-green-500 text-gray-900 placeholder-gray-500 mb-4"
         />
-        <table className="min-w-full bg-gray-800 rounded-lg">
+        <table className="min-w-full bg-green-50 rounded-lg border border-green-500">
           <thead>
-            <tr>
+            <tr className="bg-green-600 text-white">
               <th className="py-3 px-4 border-b">Name</th>
               <th className="py-3 px-4 border-b">Appointment Date</th>
               <th className="py-3 px-4 border-b">Disease</th>
@@ -92,14 +92,14 @@ const PatientListView = () => {
           </thead>
           <tbody>
             {filteredPatients.map((patient) => (
-              <tr key={patient.id} className="hover:bg-gray-700 transition-colors">
+              <tr key={patient.id} className="hover:bg-green-200 transition-colors">
                 <td className="py-3 px-4 border-b">{patient.name}</td>
                 <td className="py-3 px-4 border-b">{patient.appointmentDate}</td>
                 <td className="py-3 px-4 border-b">{patient.disease}</td>
                 <td className="py-3 px-4 border-b">
                   <button
                     onClick={() => openModal(patient)}
-                    className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded"
+                    className="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded"
                   >
                     View Details
                   </button>
@@ -110,14 +110,14 @@ const PatientListView = () => {
         </table>
         {isModalOpen && selectedPatient && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-            <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md relative">
+            <div className="bg-white rounded-lg p-6 w-full max-w-md relative shadow-lg">
               <button
                 onClick={closeModal}
-                className="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl"
+                className="absolute top-2 right-2 text-gray-400 hover:text-green-700 text-2xl"
               >
                 &times;
               </button>
-              <h2 className="text-2xl font-bold mb-4">{selectedPatient.name}</h2>
+              <h2 className="text-2xl font-bold mb-4 text-green-700">{selectedPatient.name}</h2>
               <p><strong>Appointment Date:</strong> {selectedPatient.appointmentDate}</p>
               <p><strong>Disease:</strong> {selectedPatient.disease}</p>
               <p><strong>Age:</strong> {selectedPatient.age}</p>
