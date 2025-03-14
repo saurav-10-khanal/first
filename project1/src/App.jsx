@@ -24,6 +24,7 @@ function App() {
       <PatientHomePage/>
       <AppointmentStatusChecklist/>
       <ChatConsultation/>
+      
     </div>
     
     
