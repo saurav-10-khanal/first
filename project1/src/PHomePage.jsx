@@ -18,33 +18,37 @@ const PatientHomePage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
-      <h1 className="text-4xl font-bold text-center mb-6">Book an Appointment</h1>
-      
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-        <input
-          type="text"
-          placeholder="Search by doctor name..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full sm:w-1/3 p-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400"
-        />
-        <select
-          value={selectedDisease}
-          onChange={(e) => setSelectedDisease(e.target.value)}
-          className="w-full sm:w-1/4 p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"
-        >
-          <option value="">Filter by Disease</option>
-          <option value="Heart Disease">Heart Disease</option>
-          <option value="Diabetes">Diabetes</option>
-          <option value="Asthma">Asthma</option>
-        </select>
-      </div>
+    <div className="min-h-screen bg-green-100 text-gray-900 p-6">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-5xl font-extrabold text-center mb-8 text-green-700">Find Your Specialist</h1>
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <input
+            type="text"
+            placeholder="Search by doctor name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full sm:w-1/3 p-3 rounded-lg bg-white border border-green-300 text-gray-900 placeholder-gray-500 shadow-sm"
+          />
+          <select
+            value={selectedDisease}
+            onChange={(e) => setSelectedDisease(e.target.value)}
+            className="w-full sm:w-1/4 p-3 rounded-lg bg-white border border-green-300 text-gray-900 shadow-sm"
+          >
+            <option value="">Filter by Disease</option>
+            <option value="Heart Disease">Heart Disease</option>
+            <option value="Diabetes">Diabetes</option>
+            <option value="Asthma">Asthma</option>
+          </select>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredDoctors.map((doctor) => (
-          <DoctorProfile key={doctor.id} doctor={doctor} />
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredDoctors.length > 0 ? (
+            filteredDoctors.map((doctor) => <DoctorProfile key={doctor.id} doctor={doctor} />)
+          ) : (
+            <p className="text-center text-lg text-green-700 font-semibold">No doctors found. Try another search.</p>
+          )}
+        </div>
       </div>
     </div>
   );
