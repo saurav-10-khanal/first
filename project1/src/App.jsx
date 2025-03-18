@@ -13,6 +13,7 @@ import DoctorProfile from './DocProfile';
 import PatientHomePage from './PHomePage';
 import AppointmentStatusChecklist from './AppointmentCheck';
 import ChatConsultation from './ChatBox';
+import PatientPaymentSlips from './PaymentSlip';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <ChatConsultation/>
       <LoginPage/>
       <UploadReport/>
+      <PatientPaymentSlips/>
       
     </div>
     
