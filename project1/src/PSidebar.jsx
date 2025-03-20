@@ -71,6 +71,11 @@ const PatientSidebar = () => {
             </li>
             <li>
               <div className="block py-2 px-3 rounded hover:bg-gray-700 cursor-pointer">
+                Pharmacy
+              </div>
+            </li>
+            <li>
+              <div className="block py-2 px-3 rounded hover:bg-gray-700 cursor-pointer">
                 Settings
               </div>
             </li>

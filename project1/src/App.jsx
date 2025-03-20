@@ -15,6 +15,7 @@ import AppointmentStatusChecklist from './AppointmentCheck';
 import ChatConsultation from './ChatBox';
 import PatientPaymentSlips from './PaymentSlip';
 import HealthSummary from './HealthSummary';
+import PharmacyPortal from './Pharmacy';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <UploadReport/>
       <PatientPaymentSlips/>
       <HealthSummary/>
+      <PharmacyPortal/>
       
     </div>
     
