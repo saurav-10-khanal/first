@@ -61,7 +61,7 @@ const PatientSidebar = () => {
             </li>
             <li>
               <div className="block py-2 px-3 rounded hover:bg-gray-700 cursor-pointer">
-                Health Summary
+                Lab & Reports
               </div>
             </li>
             <li>

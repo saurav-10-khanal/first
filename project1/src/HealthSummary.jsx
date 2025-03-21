@@ -12,7 +12,7 @@ const mockHealthData = [
 const HealthSummary = () => {
   return (
     <div className="min-h-screen bg-blue-50 text-gray-900 p-6">
-      <h1 className="text-4xl font-bold text-center mb-6">Health Summary</h1>
+      <h1 className="text-4xl font-bold text-center mb-6">Lab & Reports</h1>
       
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
         <h2 className="text-2xl font-semibold mb-4">Overall Summary</h2>
@@ -39,6 +39,15 @@ const HealthSummary = () => {
             <p><strong>Heart Rate:</strong> 73 bpm (Healthy)</p>
             <p><strong>Cholesterol Level:</strong> 180 mg/dL (Within Range)</p>
             <p><strong>Sugar Level:</strong> 95 mg/dL (Stable)</p>
+          </div>
+        </div>
+        
+        <div className="mt-6">
+          <h3 className="text-xl font-semibold mb-4">Download Reports & Scans</h3>
+          <div className="bg-gray-100 p-4 rounded-lg flex flex-col gap-2">
+            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Download X-Ray Scan</button>
+            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Download Blood Test Report</button>
+            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Download Full Health Report</button>
           </div>
         </div>
       </div>
