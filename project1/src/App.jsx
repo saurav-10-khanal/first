@@ -32,6 +32,8 @@ function App() {
       <PatientPaymentSlips/>
       <HealthSummary/>
       <PharmacyPortal/>
+      <DashBoard/>
+      <PatientDashboardPage/>
       
     </div>
     
