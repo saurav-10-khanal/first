@@ -6,7 +6,7 @@ const DoctorProfile = () => {
     name: 'Dr. Jane Doe',
     specialty: 'Cardiologist',
     bio: 'With over 15 years of experience, Dr. Jane Doe specializes in advanced cardiovascular treatments and preventive care.',
-    photoUrl: 'https://via.placeholder.com/150',
+    photoUrl: '/Doctor1.png',
     contact: {
       phone: '(123) 456-7890',
       email: 'jane.doe@example.com',
@@ -36,7 +36,7 @@ const DoctorProfile = () => {
         <div className="flex flex-col md:flex-row items-center md:items-start">
           <img
             src={doctor.photoUrl}
-            alt={doctor.name}
+            alt="kch bhi"
             className="w-32 h-32 md:w-48 md:h-48 rounded-full shadow-md mb-4 md:mb-0 md:mr-6"
           />
           <div className="text-center md:text-left">

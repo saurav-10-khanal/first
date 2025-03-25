@@ -16,12 +16,14 @@ import ChatConsultation from './ChatBox';
 import PatientPaymentSlips from './PaymentSlip';
 import HealthSummary from './HealthSummary';
 import PharmacyPortal from './Pharmacy';
+import AppointmentSection from './AppointmentSection';
 
 
 function App() {
   return (
     
     <div>
+      <AppointmentSection/>
       <PatientListView />
       <DoctorProfile/>
       <PatientHomePage/>

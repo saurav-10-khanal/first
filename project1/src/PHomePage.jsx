@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import DoctorProfile from "./DocProfile";
 
 const doctors = [
-  { id: 1, name: "Dr. John Doe", specialty: "Cardiologist", disease: "Heart Disease", experience: "10 years", rating: 4.8, image: "doctor1.jpg" },
-  { id: 2, name: "Dr. Jane Smith", specialty: "Endocrinologist", disease: "Diabetes", experience: "8 years", rating: 4.6, image: "doctor2.jpg" },
-  { id: 3, name: "Dr. Alice Brown", specialty: "Pulmonologist", disease: "Asthma", experience: "12 years", rating: 4.9, image: "doctor3.jpg" },
+  { id: 1, name: "Dr. John Doe", specialty: "Cardiologist", disease: "Heart Disease", experience: "10 years", rating: 4.8, image: "/Doctor1.png" },
+  { id: 2, name: "Dr. Jane Smith", specialty: "Endocrinologist", disease: "Diabetes", experience: "8 years", rating: 4.6, image: "/doctor2.jpg" },
+  { id: 3, name: "Dr. Alice Brown", specialty: "Pulmonologist", disease: "Asthma", experience: "12 years", rating: 4.9, image: "/doctor3.jpg" },
 ];
 
 const PatientHomePage = () => {
@@ -21,7 +21,7 @@ const PatientHomePage = () => {
     <div className="min-h-screen bg-green-100 text-gray-900 p-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-5xl font-extrabold text-center mb-8 text-green-700">Find Your Specialist</h1>
-        
+
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <input
             type="text"
