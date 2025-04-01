@@ -38,6 +38,7 @@ function App() {
       <DashBoard/>
       <PatientDashboardPage/>
       <HospitalStats/>
+      <PatientProfile/>
       
     </div>
     
