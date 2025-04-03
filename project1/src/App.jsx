@@ -18,6 +18,7 @@ import HealthSummary from './HealthSummary';
 import PharmacyPortal from './Pharmacy';
 import AppointmentSection from './AppointmentSection';
 import HospitalStats from './HospitalStat';
+import PharmacyCartView from './Pharmacycart';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
       <PatientDashboardPage/>
       <HospitalStats/>
       <PatientProfile/>
+      <PharmacyCartView/>
       
     </div>
     
