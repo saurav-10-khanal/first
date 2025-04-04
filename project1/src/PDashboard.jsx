@@ -1,162 +1,113 @@
-import React from 'react';
-// import PatientSidebar from '@/components/PatientSidebar
-import PatientSidebar from './PSidebar';
+import React, { useState } from "react";
+import { toast, Toaster } from "sonner";
+import axios from "axios";
 
-class Appointment {
-  id
-  date
-  time
-  doctorName
-  status
-}
+export default function AuthPage() {
+  const [formData, setFormData] = useState({ email: "", username: "", password: "" });
+  const [isPending, setIsPending] = useState(false);
 
-const mockAppointments = [
-  { id: 1, date: '2025-03-10', time: '10:00 AM', doctorName: 'Dr. Smith', status: 'Scheduled' },
-  { id: 2, date: '2025-03-15', time: '02:00 PM', doctorName: 'Dr. Adams', status: 'Pending' },
-];
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-class PaymentSlip {
-  id
-  date
-  amount
-  status
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsPending(true);
+    try {
+      // Dummy successful simulation
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      toast.success("Registration successful! Redirecting...");
+      setTimeout(() => window.location.href = "/", 500);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const errorMessage = error.response?.data?.error || "Registration failed. Try again.";
+        toast.error(errorMessage);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    } finally {
+      setIsPending(false);
+    }
+  };
 
-const mockPayments = [
-  { id: 1, date: '2025-02-28', amount: 150, status: 'Paid' },
-  { id: 2, date: '2025-03-01', amount: 300, status: 'Unpaid' },
-];
-
-const  PatientDashboardPage  = () => {
   return (
-    <div className="flex min-h-screen bg-black text-white">
-      {/* Sidebar */}
-      <PatientSidebar />
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-200 to-gray-700">
+      <Toaster />
+      <div className="w-[80vw] h-[90vh] flex shadow-lg rounded-2xl overflow-hidden bg-white">
+        {/* Left Side - Image */}
+        <div
+          className="w-1/2 bg-cover bg-center flex flex-col justify-center items-center p-6"
+          style={{ backgroundImage: "url('/Doctor.png')" }}
+        ></div>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6">
-        <h1 className="text-3xl font-bold mb-6">Patient Dashboard</h1>
+        {/* Right Side - Form */}
+        <div className="w-1/2 flex flex-col items-center justify-center p-10 bg-gray-100">
+          <h1 className="text-3xl font-bold text-center text-black drop-shadow-lg">Welcome to MedicoHub</h1>
+          <p className="text-center text-black text-lg mt-2 drop-shadow-lg">Your trust is our pride</p>
 
-        {/* Top Stats */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
-          <div className="bg-gray-800 p-4 rounded shadow">
-            <h2 className="text-lg font-semibold">Total Appointments</h2>
-            <p className="text-2xl">8</p>
+          <div className="w-full max-w-md p-6 shadow-2xl bg-white mt-8 rounded-xl">
+            <h2 className="text-center text-2xl font-semibold text-gray-800 mb-6">Register</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div>
+                <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+                <input
+                  className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  id="username"
+                  type="text"
+                  name="username"
+                  placeholder="Enter your username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                  className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                <input
+                  className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  id="password"
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isPending}
+                className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-lg font-semibold transition"
+              >
+                {isPending ? "Registering..." : "Register"}
+              </button>
+            </form>
           </div>
-          <div className="bg-gray-800 p-4 rounded shadow">
-            <h2 className="text-lg font-semibold">Pending Payments</h2>
-            <p className="text-2xl">$300</p>
-          </div>
-          <div className="bg-gray-800 p-4 rounded shadow">
-            <h2 className="text-lg font-semibold">Uploaded Reports</h2>
-            <p className="text-2xl">12</p>
-          </div>
-          <div className="bg-gray-800 p-4 rounded shadow">
-            <h2 className="text-lg font-semibold">Messages</h2>
-            <p className="text-2xl">2</p>
+
+          {/* Link to Login */}
+          <div className="mt-4 text-center">
+            <p className="text-sm font-bold text-black">
+              Already have an account?{' '}
+              <a href="/sign-in" className="text-blue-600 hover:underline">
+                Login
+              </a>
+            </p>
           </div>
         </div>
-
-        {/* Appointment Status Table */}
-        <div className="bg-gray-800 rounded shadow mb-6">
-          <div className="p-4 border-b border-gray-700">
-            <h2 className="text-xl font-semibold">Appointment Status</h2>
-          </div>
-          <div className="p-4 overflow-x-auto">
-            <table className="min-w-full text-sm">
-              <thead className="bg-gray-700">
-                <tr>
-                  <th className="py-2 px-4 text-left">SL.NO</th>
-                  <th className="py-2 px-4 text-left">Date</th>
-                  <th className="py-2 px-4 text-left">Time</th>
-                  <th className="py-2 px-4 text-left">Doctor</th>
-                  <th className="py-2 px-4 text-left">Status</th>
-                  <th className="py-2 px-4 text-left">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mockAppointments.length === 0 ? (
-                  <tr>
-                    <td colSpan={6} className="py-4 text-center text-gray-400">
-                      No appointments found
-                    </td>
-                  </tr>
-                ) : (
-                  mockAppointments.map((appt) => (
-                    <tr key={appt.id} className="border-b border-gray-700">
-                      <td className="py-2 px-4">{appt.id}</td>
-                      <td className="py-2 px-4">{appt.date}</td>
-                      <td className="py-2 px-4">{appt.time}</td>
-                      <td className="py-2 px-4">{appt.doctorName}</td>
-                      <td className="py-2 px-4">{appt.status}</td>
-                      <td className="py-2 px-4">
-                        <button className="bg-blue-600 hover:bg-blue-700 text-white py-1 px-2 rounded">
-                          View
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Payment Slip Table */}
-        <div className="bg-gray-800 rounded shadow mb-6">
-          <div className="p-4 border-b border-gray-700">
-            <h2 className="text-xl font-semibold">Payment Slips</h2>
-          </div>
-          <div className="p-4 overflow-x-auto">
-            <table className="min-w-full text-sm">
-              <thead className="bg-gray-700">
-                <tr>
-                  <th className="py-2 px-4 text-left">SL.NO</th>
-                  <th className="py-2 px-4 text-left">Date</th>
-                  <th className="py-2 px-4 text-left">Amount</th>
-                  <th className="py-2 px-4 text-left">Status</th>
-                  <th className="py-2 px-4 text-left">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mockPayments.length === 0 ? (
-                  <tr>
-                    <td colSpan={5} className="py-4 text-center text-gray-400">
-                      No payments found
-                    </td>
-                  </tr>
-                ) : (
-                  mockPayments.map((pay) => (
-                    <tr key={pay.id} className="border-b border-gray-700">
-                      <td className="py-2 px-4">{pay.id}</td>
-                      <td className="py-2 px-4">{pay.date}</td>
-                      <td className="py-2 px-4">${pay.amount}</td>
-                      <td className="py-2 px-4">{pay.status}</td>
-                      <td className="py-2 px-4">
-                        <button className="bg-green-600 hover:bg-green-700 text-white py-1 px-2 rounded">
-                          View Slip
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Health Summary / Extra Widget */}
-        <div className="bg-gray-800 rounded shadow">
-          <div className="p-4 border-b border-gray-700">
-            <h2 className="text-xl font-semibold">Health Summary</h2>
-          </div>
-          <div className="p-4">
-            <p className="text-gray-200">No data available yet.</p>
-          </div>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
-
-export default PatientDashboardPage

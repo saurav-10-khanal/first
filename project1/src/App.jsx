@@ -25,6 +25,7 @@ function App() {
   return (
     
     <div>
+      <PatientDashboardPage/>
       <AppointmentSection/>
       <PatientListView />
       <DoctorProfile/>
@@ -37,10 +38,11 @@ function App() {
       <HealthSummary/>
       <PharmacyPortal/>
       <DashBoard/>
-      <PatientDashboardPage/>
+      
       <HospitalStats/>
       <PatientProfile/>
       <PharmacyCartView/>
+      
       
     </div>
     
