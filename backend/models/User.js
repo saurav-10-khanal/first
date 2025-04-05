@@ -1,18 +1,37 @@
-import mongoose from "mongoose";
+// models/User.js
 
-const UserSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, enum: ["patient", "doctor", "admin"], default: "patient" },
-    phone: { type: String },
-    gender: { type: String, enum: ["male", "female", "other"] },
-    dateOfBirth: { type: Date },
-    profileImage: { type: String, default: "/default-profile.png" },
-    appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Appointment" }],
+const mongoose = require('mongoose');
+
+const UserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
   },
-  { timestamps: true }
-);
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  resetToken: {
+    type: String
+  },
+  resetTokenExpiry: {
+    type: Date
+  },
+  registeredDate: {
+    type: Date,
+    default: Date.now
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
+  }
+});
 
-export default mongoose.model("User", UserSchema);
+module.exports = mongoose.model('User', UserSchema);
