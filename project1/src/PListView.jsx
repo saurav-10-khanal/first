@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import Sidebar from "./sidebar";
 
-const PatientListView = () => {
+const PatientCardView = () => {
   const [patients] = useState([
     {
       id: 1,
@@ -69,45 +69,76 @@ const PatientListView = () => {
     setIsModalOpen(false);
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  };
+
   return (
-    <div className="flex h-screen bg-white text-gray-900">
+    <div className="flex h-screen bg-gray-50 text-gray-900">
       <Sidebar />
       <div className="flex-1 overflow-auto p-6">
-        <h1 className="text-3xl font-bold mb-6 text-green-700">Patient List</h1>
-        <input
-          type="text"
-          placeholder="Search by name or disease..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 rounded-lg bg-gray-100 border border-green-500 text-gray-900 placeholder-gray-500 mb-4"
-        />
-        <table className="min-w-full bg-green-50 rounded-lg border border-green-500">
-          <thead>
-            <tr className="bg-green-600 text-white">
-              <th className="py-3 px-4 border-b">Name</th>
-              <th className="py-3 px-4 border-b">Appointment Date</th>
-              <th className="py-3 px-4 border-b">Disease</th>
-              <th className="py-3 px-4 border-b">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredPatients.map((patient) => (
-              <tr key={patient.id} className="hover:bg-green-200 transition-colors">
-                <td className="py-3 px-4 border-b">{patient.name}</td>
-                <td className="py-3 px-4 border-b">{patient.appointmentDate}</td>
-                <td className="py-3 px-4 border-b">{patient.disease}</td>
-                <td className="py-3 px-4 border-b">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-green-700">Patient List</h1>
+          <button 
+            onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+            className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded flex items-center"
+          >
+            Sort by Date {sortOrder === "asc" ? "↑" : "↓"}
+          </button>
+        </div>
+        
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Search by name or disease..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full p-3 rounded-lg bg-white border border-green-300 text-gray-900 placeholder-gray-500 shadow-sm"
+          />
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredPatients.map((patient) => (
+            <div 
+              key={patient.id} 
+              className="bg-white rounded-lg shadow-md border border-green-100 overflow-hidden hover:shadow-lg transition-shadow"
+            >
+              <div className="bg-green-500 px-4 py-2 text-white font-semibold">
+                Appointment: {formatDate(patient.appointmentDate)}
+              </div>
+              <div className="p-4">
+                <h2 className="text-xl font-bold text-green-700 mb-2">{patient.name}</h2>
+                <div className="flex items-center mb-3">
+                  <span className="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                    {patient.disease}
+                  </span>
+                  <span className="bg-gray-100 text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded">
+                    {patient.gender}, {patient.age} yrs
+                  </span>
+                </div>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                  {patient.notes}
+                </p>
+                <div className="flex justify-end">
                   <button
                     onClick={() => openModal(patient)}
-                    className="bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded"
+                    className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
                   >
                     View Details
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {filteredPatients.length === 0 && (
+          <div className="text-center py-8 text-gray-500">
+            No patients match your search criteria.
+          </div>
+        )}
+        
         {isModalOpen && selectedPatient && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
             <div className="bg-white rounded-lg p-6 w-full max-w-md relative shadow-lg">
@@ -118,13 +149,32 @@ const PatientListView = () => {
                 &times;
               </button>
               <h2 className="text-2xl font-bold mb-4 text-green-700">{selectedPatient.name}</h2>
-              <p><strong>Appointment Date:</strong> {selectedPatient.appointmentDate}</p>
-              <p><strong>Disease:</strong> {selectedPatient.disease}</p>
-              <p><strong>Age:</strong> {selectedPatient.age}</p>
-              <p><strong>Gender:</strong> {selectedPatient.gender}</p>
-              <p><strong>Contact:</strong> {selectedPatient.contact}</p>
-              <p><strong>Address:</strong> {selectedPatient.address}</p>
-              {selectedPatient.notes && <p><strong>Notes:</strong> {selectedPatient.notes}</p>}
+              <div className="grid grid-cols-1 gap-2 text-gray-700">
+                <p><span className="font-semibold">Appointment:</span> {formatDate(selectedPatient.appointmentDate)}</p>
+                <p><span className="font-semibold">Disease:</span> {selectedPatient.disease}</p>
+                <p><span className="font-semibold">Age:</span> {selectedPatient.age}</p>
+                <p><span className="font-semibold">Gender:</span> {selectedPatient.gender}</p>
+                <p><span className="font-semibold">Contact:</span> {selectedPatient.contact}</p>
+                <p><span className="font-semibold">Address:</span> {selectedPatient.address}</p>
+                {selectedPatient.notes && (
+                  <div className="mt-2 pt-2 border-t border-gray-200">
+                    <p><span className="font-semibold">Notes:</span></p>
+                    <p className="text-gray-600 mt-1">{selectedPatient.notes}</p>
+                  </div>
+                )}
+                {selectedPatient.reportUrl && (
+                  <div className="mt-4">
+                    <a 
+                      href={selectedPatient.reportUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block text-center bg-green-100 hover:bg-green-200 text-green-700 py-2 px-4 rounded"
+                    >
+                      View Medical Report
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -133,4 +183,4 @@ const PatientListView = () => {
   );
 };
 
-export default PatientListView;
+export default PatientCardView;
